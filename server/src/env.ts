@@ -20,6 +20,16 @@ const envSchema = z.object({
     .default("development"),
   PORT: z.coerce.number().default(5000),
   ALLOWED_ORIGINS: z.string().default("http://localhost:5173"),
+  DATABASE_URL: z.string().startsWith("postgresql://"),
+  PASSWORD_SALT_ROUNDS: z.coerce.number().min(10).max(20).default(12),
+  ACCESS_TOKEN_SECRET_KEY: z
+    .string()
+    .min(32, "Access token secret key must be 32 characters long"),
+  REFRESH_TOKEN_SECRET_KEY: z
+    .string()
+    .min(32, "Refresh token secret key must be 32 characters long"),
+  ACCESS_TOKEN_EXPIRATION: z.coerce.number().min(1).default(1),
+  REFRESH_TOKEN_EXPIRATION: z.coerce.number().min(1).default(7),
 });
 
 type EnvType = z.infer<typeof envSchema>;
