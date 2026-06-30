@@ -10,7 +10,7 @@ export const validateBody = <T>(schema: ZodType<T>) => {
     } catch (e) {
       if (e instanceof ZodError) {
         return res.status(400).json({
-          message: "Invalid Field",
+          error: "Invalid Field",
           details: e.issues.map((err) => ({
             name: err.path.join("."),
             message: err.message,

@@ -45,23 +45,23 @@ export const errorHandler = (
     }
 
     let status = 500;
-    let message = "Internal Server Error";
+    let error = "Internal Server Error";
     let stack = "";
 
     if (err instanceof Error) {
-      message = err.message;
+      error = err.message;
       stack = err.stack || "";
     }
 
     return res.status(status).json({
-      message,
+      error,
       ...(env.NODE_ENV === "development" && {
         stack,
       }),
     });
   } catch (e) {
     return res.status(500).json({
-      message: "Internal Server Error",
+      error: "Internal Server Error",
       ...(env.NODE_ENV === "development" && {
         stack: e instanceof Error ? e.stack : "",
       }),

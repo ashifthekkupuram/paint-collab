@@ -23,7 +23,7 @@ export const login = async (
 
     if (!user) {
       return res.status(400).json({
-        message: "Invalid email or password.",
+        error: "Invalid email or password.",
       });
     }
 
@@ -31,7 +31,7 @@ export const login = async (
 
     if (!passwordMatch) {
       return res.status(400).json({
-        message: "Invalid email or password.",
+        error: "Invalid email or password.",
       });
     }
 
@@ -106,7 +106,7 @@ export const refresh = async (
 
     if (!refresh_token) {
       return res.status(401).json({
-        message: "Authentication token is missing.",
+        error: "Authentication token is missing.",
       });
     }
 
@@ -119,7 +119,7 @@ export const refresh = async (
 
     if (!user) {
       return res.status(404).json({
-        message: "User not found",
+        error: "User not found",
       });
     }
 

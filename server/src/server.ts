@@ -10,7 +10,7 @@ import { errorHandler } from "./middlewares/errorHandler.ts";
 const app = express();
 
 // App Configuration
-app.use(cors({ origin: env.ALLOWED_ORIGINS.split(" ") }));
+app.use(cors({ origin: env.ALLOWED_ORIGINS.split(" "), credentials: true }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
